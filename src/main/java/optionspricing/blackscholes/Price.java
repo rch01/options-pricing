@@ -16,15 +16,15 @@ final public class Price {
     }
 
     public double delta() {
-        return Greeks.delta(d.optionType(), d.rate(), d.time(), d1);
+        return Greek.delta(d.optionType(), d.rate(), d.time(), d1);
     }
 
     public double gamma() {
-        return Greeks.gamma(d.underlying(), d.rate(), d.time(), d.volatility(), d1);
+        return Greek.gamma(d.underlying(), d.rate(), d.time(), d.volatility(), d1);
     }
 
     public double theta() {
-        return Greeks.theta(d.optionType(), d.underlying(), d.exercise(), d.rate(), d.time(), d.volatility(), d1, d2);
+        return Greek.theta(d.optionType(), d.underlying(), d.exercise(), d.rate(), d.time(), d.volatility(), d1, d2);
     }
 
     private double call() {

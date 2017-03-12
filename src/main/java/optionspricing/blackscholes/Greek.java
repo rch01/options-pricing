@@ -7,7 +7,7 @@ package optionspricing.blackscholes;
 
 import org.apache.commons.math3.distribution.NormalDistribution;
 
-final public class Greeks {
+final public class Greek {
 	
 	/**
 	 * @param optionType - call or put option.
@@ -44,5 +44,5 @@ final public class Greeks {
 		return a / b;
 	}
 	
-	private Greeks() {} /* Black76 is a static class, no instances are necessary */
+	private Greek() {} /* Black76 is a static class, no instances are necessary */
 }
