@@ -1,6 +1,6 @@
 package optionspricing.blackscholes;
 
-public final class D1D2 {
+final public class D1D2 {
     public static double d1(double f, double k, double t, double v) {
         return calculateD1(f, k, t, v);
     }

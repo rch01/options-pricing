@@ -6,19 +6,28 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
-public class PricingOptions {
+final public class Main {
 	final private static DecimalFormat df = new DecimalFormat("#,###.####");
 
 	public static void main(String [] args) {
+		exampleOptionPrice();
+		actualOptionPrice();
+	}
+
+	private static void exampleOptionPrice() {
 		System.out.println("Black76 option pricing model example:");
 
 		Option ex = new Option('c', 55.04, 50.5, 0.25, 0.0100883674, 0.12);//3-month dollar LIBOR annual interest rate, converted to continuously compounded using equation 4.3 p79 of Hull Options, Futures, And Other Derivatives 8th Ed.
-		System.out.println("\nOption price: " + ((ex.price() == -1.0) ? "cannot calculate option price." : df.format(ex.price())));
-		System.out.println("Delta: " + df.format(ex.optionDelta()));
-		System.out.println("Theta: " + df.format(ex.optionTheta()) + " (per calendar day)");
-		System.out.println("Gamma: " + df.format(ex.optionGamma()));
-		System.out.println(ex.toString());
+		Price p = new Price(ex);
 
+		System.out.println("\nOption price: " + df.format(p.price()));
+		System.out.println("Delta: " + df.format(p.delta()));
+		System.out.println("Theta: " + df.format(p.theta()) + " (per calendar day)");
+		System.out.println("Gamma: " + df.format(p.gamma()));
+		System.out.println(ex.toString());
+	}
+
+	private static void actualOptionPrice() {
 		System.out.print("\nEnter an integer to price another option or any character to exit: ");
 		Scanner sc = new Scanner(System.in);
 		final boolean next = sc.hasNextInt();
@@ -34,10 +43,12 @@ public class PricingOptions {
 			final double v = Double.parseDouble(optionProps.get("v"));
 
 			Option o = new Option(oType, u, k, t, r, v);
-			System.out.println("\nOption price: " + ((o.price() == -1.0) ? "cannot calculate option price." : df.format(o.price())));
-			System.out.println("Delta: " + df.format(o.optionDelta()));
-			System.out.println("Theta: " + df.format(o.optionTheta()) + " (per calendar day)");
-			System.out.println("Gamma: " + df.format(o.optionGamma()));
+			Price p = new Price(o);
+
+			System.out.println("\nOption price: " + df.format(p.price()));
+			System.out.println("Delta: " + df.format(p.delta()));
+			System.out.println("Theta: " + df.format(p.theta()) + " (per calendar day)");
+			System.out.println("Gamma: " + df.format(p.gamma()));
 			System.out.println(o.toString());
 		} else {
 			sc.close();
@@ -137,7 +148,7 @@ public class PricingOptions {
 		,	TIME
 		,	INTEREST_RATE
 		,	VOLATILITY
-		,	DONE;
+		,	DONE
 	}
 
 }

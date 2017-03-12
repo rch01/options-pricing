@@ -1,13 +1,13 @@
 package optionspricing.blackscholes;
 
-/**
+/*
  * Implementation of the Greek letters, which are used to measure different dimensions of the risk in an option position.
  * All formulas are from Chapter 18, Table 18.6, page 398 of Hull, C. J. 2011. Options, Futures, And Other Derivatives, 8th Edition.
  */
 
 import org.apache.commons.math3.distribution.NormalDistribution;
 
-public final class Greeks {
+final public class Greeks {
 	
 	/**
 	 * @param optionType - call or put option.
@@ -44,5 +44,5 @@ public final class Greeks {
 		return a / b;
 	}
 	
-	private Greeks() {}/** private constructor so no instances can be created. */
+	private Greeks() {} /* Black76 is a static class, no instances are necessary */
 }
